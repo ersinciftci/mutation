@@ -25,7 +25,7 @@ public class MutationServiceImpl implements MutationService {
     public List<Mutation> getMutationData(List<String> geneticProfileStableIds, List<String> hugoGeneSymbols)
             throws InvalidGeneException {
 
-        if(!geneService.isValidGenes(hugoGeneSymbols)) {
+        if(hugoGeneSymbols.isEmpty() || !geneService.isValidGenes(hugoGeneSymbols)) {
             throw new InvalidGeneException();
         }
         return mutationRepository.getMutationData(geneticProfileStableIds, hugoGeneSymbols);
