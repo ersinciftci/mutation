@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
+
+    <entity class="org.cbioportal.mutation.model.Mutation">
+        <attributes>
+            <embedded-id name="id"/>
+            <many-to-one name="geneticProfile" maps-id="geneticProfileId">
+                <join-column name="GENETIC_PROFILE_ID"/>
+            </many-to-one>
+            <many-to-one name="mutationEvent" maps-id="mutationEventId">
+                <join-column name="MUTATION_EVENT_ID"/>
+            </many-to-one>
+            <many-to-one name="sample" maps-id="internalId">
+                <join-column name="SAMPLE_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.MutationEvent">
+        <attributes>
+            <id name="mutationEventId"/>
+            <many-to-one name="gene">
+                <join-column name="ENTREZ_GENE_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.CancerStudy">
+        <attributes>
+            <id name="cancerStudyId"/>
+            <basic name="importDate">
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <basic name="publicStudy">
+                <column name="PUBLIC"/>
+            </basic>
+            <many-to-one name="typeOfCancer">
+                <join-column name="TYPE_OF_CANCER_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.Gene">
+        <attributes>
+            <id name="entrezGeneId"/>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.GeneticProfile">
+        <attributes>
+            <id name="geneticProfileId"/>
+            <basic name="description">
+                <lob/>
+            </basic>
+            <many-to-one name="cancerStudy">
+                <join-column name="CANCER_STUDY_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.Patient">
+        <attributes>
+            <id name="internalId"/>
+            <many-to-one name="cancerStudy">
+                <join-column name="CANCER_STUDY_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.Sample">
+        <attributes>
+            <id name="internalId"/>
+            <many-to-one name="patient">
+                <join-column name="PATIENT_ID"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="org.cbioportal.mutation.model.TypeOfCancer">
+        <attributes>
+            <id name="typeOfCancerId"/>
+        </attributes>
+    </entity>
+
+</entity-mappings>
