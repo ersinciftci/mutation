@@ -7,13 +7,13 @@
     <entity class="org.cbioportal.mutation.model.Mutation">
         <attributes>
             <embedded-id name="id"/>
-            <many-to-one name="geneticProfile" maps-id="geneticProfileId">
+            <many-to-one name="geneticProfile" maps-id="geneticProfileId" fetch="LAZY">
                 <join-column name="GENETIC_PROFILE_ID"/>
             </many-to-one>
-            <many-to-one name="mutationEvent" maps-id="mutationEventId">
+            <many-to-one name="mutationEvent" maps-id="mutationEventId" fetch="LAZY">
                 <join-column name="MUTATION_EVENT_ID"/>
             </many-to-one>
-            <many-to-one name="sample" maps-id="internalId">
+            <many-to-one name="sample" maps-id="internalId" fetch="LAZY">
                 <join-column name="SAMPLE_ID"/>
             </many-to-one>
         </attributes>
@@ -22,7 +22,7 @@
     <entity class="org.cbioportal.mutation.model.MutationEvent">
         <attributes>
             <id name="mutationEventId"/>
-            <many-to-one name="gene">
+            <many-to-one name="gene" fetch="LAZY">
                 <join-column name="ENTREZ_GENE_ID"/>
             </many-to-one>
         </attributes>
@@ -37,7 +37,7 @@
             <basic name="publicStudy">
                 <column name="PUBLIC"/>
             </basic>
-            <many-to-one name="typeOfCancer">
+            <many-to-one name="typeOfCancer" fetch="LAZY">
                 <join-column name="TYPE_OF_CANCER_ID"/>
             </many-to-one>
         </attributes>
@@ -55,7 +55,7 @@
             <basic name="description">
                 <lob/>
             </basic>
-            <many-to-one name="cancerStudy">
+            <many-to-one name="cancerStudy" fetch="LAZY">
                 <join-column name="CANCER_STUDY_ID"/>
             </many-to-one>
         </attributes>
@@ -64,7 +64,7 @@
     <entity class="org.cbioportal.mutation.model.Patient">
         <attributes>
             <id name="internalId"/>
-            <many-to-one name="cancerStudy">
+            <many-to-one name="cancerStudy" fetch="LAZY">
                 <join-column name="CANCER_STUDY_ID"/>
             </many-to-one>
         </attributes>
@@ -73,7 +73,7 @@
     <entity class="org.cbioportal.mutation.model.Sample">
         <attributes>
             <id name="internalId"/>
-            <many-to-one name="patient">
+            <many-to-one name="patient" fetch="LAZY">
                 <join-column name="PATIENT_ID"/>
             </many-to-one>
         </attributes>
