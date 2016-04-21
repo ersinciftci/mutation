@@ -1,5 +1,6 @@
 package org.cbioportal.mutation.service.impl;
 
+import org.cbioportal.mutation.dto.MutationEventCount;
 import org.cbioportal.mutation.exception.InvalidGeneException;
 import org.cbioportal.mutation.repository.MutationRepository;
 import org.cbioportal.mutation.model.Mutation;
@@ -30,4 +31,11 @@ public class MutationServiceImpl implements MutationService {
         }
         return mutationRepository.getMutationData(geneticProfileStableIds, hugoGeneSymbols);
     }
+
+    @Override
+    public List<MutationEventCount> countMutationEvents() {
+        return mutationRepository.countMutationEvents();
+    }
+
+
 }

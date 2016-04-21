@@ -1,8 +1,11 @@
 package org.cbioportal.mutation.service.impl;
 
 import org.cbioportal.mutation.model.Mutation;
+import org.cbioportal.mutation.repository.GeneRepository;
 import org.cbioportal.mutation.repository.MutationRepository;
+import org.cbioportal.mutation.service.GeneService;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -27,6 +30,9 @@ public class MutationServiceImplTest {
     @Mock
     private MutationRepository mutationRepository;
 
+    @Mock
+    private GeneService geneService;
+
     @Test
     public void getMutationData() throws Exception {
 
@@ -45,6 +51,7 @@ public class MutationServiceImplTest {
 
         Mockito.when(mutationRepository.getMutationData(geneticProfileStableIdList, hugoGeneSymbolList))
                 .thenReturn(expectedMutationList);
+        Mockito.when(geneService.isValidGenes(hugoGeneSymbolList)).thenReturn(true);
 
         List<Mutation> resultMutationList = mutationService.getMutationData(
                 geneticProfileStableIdList, hugoGeneSymbolList);

@@ -1,5 +1,6 @@
 package org.cbioportal.mutation.repository.jpa;
 
+import org.cbioportal.mutation.dto.MutationEventCount;
 import org.cbioportal.mutation.repository.MutationRepository;
 import org.cbioportal.mutation.model.Mutation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class MutationRepositoryImpl implements MutationRepository {
 
         return mutationJpaRepository.findByGeneticProfileStableIdInAndMutationEventGeneHugoGeneSymbolIn(
                 geneticProfileStableIds, hugoGeneSymbols);
+    }
+
+    @Override
+    public List<MutationEventCount> countMutationEvents() {
+        return mutationJpaRepository.countMutationEvents();
     }
 }
