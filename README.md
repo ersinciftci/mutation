@@ -1,3 +1,8 @@
+To run:
+`$ mvn spring-boot:run`
+
+The default port is 8080.
+
 Swagger UI: http://localhost:8080/swagger-ui.html
 
 Swagger UI Model Schema shows all the properties of the model even if some properties are hidden with @JsonView in mixins, 
