@@ -1,5 +1,5 @@
 To run:
-`$ mvn spring-boot:run`
+```$ mvn spring-boot:run```
 
 The default port is 8080.
 
